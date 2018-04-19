@@ -18,7 +18,7 @@ TEST_CASE("Vector constructors")
 	Vector<double, 5> e(-3.0, -1.5, 0.0, 1.5, 3.0);
 	Vector<double, 5> f({-3.0, -1.5, 0.0, 1.5, 3.0});
 	Vector<double, 5> g = {-3.0, -1.5, 0.0, 1.5, 3.0};
-	Vector3i h{-1, -0, 1};
+	Vector3i h{-1, 0, 1};
 	auto i{h};
 	auto j{std::move(i)};
 
@@ -52,4 +52,37 @@ TEST_CASE("Vector constants")
 	REQUIRE(d == j);
 	REQUIRE(e == k);
 	REQUIRE(f == l);
+}
+
+TEST_CASE("Vector acessors")
+{
+	Vector4d a{1.0, 1.0, 1.0, 1.0};
+	Vector4d b{2.0, 2.0, 2.0, 2.0};
+	Vector4d c{3.0, 3.0, 3.0, 3.0};
+	Vector4d d{4.0, 4.0, 4.0, 4.0};
+
+	a[0] = -1.0;
+	a[1] = -0.5;
+	a[2] = 0.0;
+	a[3] = 0.5;
+
+	b(0) = a[0];
+	b(1) = a[1];
+	b(2) = a[2];
+	b(3) = a[3];
+
+	c.x() = b(0);
+	c.y() = b(1);
+	c.z() = b(2);
+	c.w() = b(3);
+
+	d[0] = c.x();
+	d[1] = c.y();
+	d[2] = c.z();
+	d[3] = c.w();
+
+	REQUIRE(a == Vector4d{-1.0, -0.5, 0.0, 0.5});
+	REQUIRE(b == a);
+	REQUIRE(c == b);
+	REQUIRE(d == c);
 }

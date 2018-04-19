@@ -68,6 +68,16 @@ public:
 		return const_cast<Reference>(std::as_const(*this).operator[](index));
 	}
 
+	constexpr ConstReference operator()(SizeType index) const noexcept
+	{
+		return (*this).operator[](index);
+	}
+
+	constexpr Reference operator()(SizeType index) noexcept
+	{
+		return (*this).operator[](index);
+	}
+
 	constexpr ConstReference x() const noexcept { return (*this)[0]; }
 	constexpr Reference x() noexcept { return (*this)[0]; }
 
@@ -87,6 +97,15 @@ public:
 	constexpr Reference z() noexcept
 	{
 		return const_cast<Real&>(std::as_const(*this).z());
+	}
+
+	template<typename = std::enable_if_t<(Dimension > 3)>>
+	constexpr ConstReference w() const noexcept { return (*this)[3]; }
+
+	template<typename = std::enable_if_t<(Dimension > 3), int>>
+	constexpr Reference w() noexcept
+	{
+		return const_cast<Real&>(std::as_const(*this).w());
 	}
 	
 	ConstIterator begin() const noexcept { return tuple.begin(); }
