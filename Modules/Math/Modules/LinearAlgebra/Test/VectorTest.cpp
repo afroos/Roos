@@ -54,6 +54,17 @@ TEST_CASE("Vector constants")
 	REQUIRE(f == l);
 }
 
+TEST_CASE("Vector assignment")
+{
+	Vector2f a{-1.0f, -1.0f};
+	Vector2f b{0.0f, 1.0f};
+	a = b;
+	b = {2.0f, 3.0f};
+
+	REQUIRE(a == Vector2f{0.0f, 1.0f});
+	REQUIRE(b == Vector2f{2.0f, 3.0f});
+}
+
 TEST_CASE("Vector acessors")
 {
 	Vector4d a{1.0, 1.0, 1.0, 1.0};
