@@ -97,3 +97,43 @@ TEST_CASE("Vector acessors")
 	REQUIRE(c == b);
 	REQUIRE(d == c);
 }
+
+TEST_CASE("Vector arithmetic operators")
+{
+	Vector3d a{-1.0, -2.0, 3.0};
+	Vector3d b;
+	
+	b = +a;
+	REQUIRE(b == a);
+
+	b = -a;
+	REQUIRE(b == Vector3d{1.0, 2.0, -3.0});
+
+	b += Vector3d{-1.0, -1.0, 1.0};
+	REQUIRE(b == Vector3d{0.0, 1.0, -2.0});
+
+	b -= Vector3d{0.5, 0.5, 0.5};
+	REQUIRE(b == Vector3d{-0.5, 0.5, -2.5});
+
+	b *= Vector3d{-1.0, 2.0, 3.0};
+	REQUIRE(b == Vector3d{0.5, 1.0, -7.5});
+
+	b /= Vector3d{0.5, 1.0, -2.5};
+	REQUIRE(b == Vector3d{1.0, 1.0, 3.0});
+
+	b *= 3.0;
+	REQUIRE(b == Vector3d{3.0, 3.0, 9.0});
+
+	b /= -1.5;
+	REQUIRE(b == Vector3d{-2.0, -2.0, -6.0});
+}
+
+TEST_CASE("Vector comparison operators")
+{
+	Vector3d a{-1.0, -2.0, 3.0};
+	Vector3d b{-1.0, -2.0, 3.0};
+	Vector3d c{-1.0, -3.0, 3.0};
+
+	REQUIRE(b == a);
+	REQUIRE(c < b);
+}

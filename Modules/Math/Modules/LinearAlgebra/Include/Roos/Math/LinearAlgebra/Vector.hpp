@@ -114,6 +114,42 @@ public:
 	ConstIterator end() const noexcept { return tuple.end(); }
 	Iterator end() noexcept { return tuple.end(); }
 
+	constexpr Vector& operator+=(const Vector& v) noexcept
+	{
+		std::transform(begin(), end(), v.begin(), begin(), std::plus<Real>());
+		return *this;
+	}
+
+	constexpr Vector& operator-=(const Vector& v) noexcept
+	{
+		std::transform(begin(), end(), v.begin(), begin(), std::minus<Real>());
+		return *this;
+	}
+
+	constexpr Vector& operator*=(const Vector& v) noexcept
+	{
+		std::transform(begin(), end(), v.begin(), begin(), std::multiplies<Real>());
+		return *this;
+	}
+
+	constexpr Vector& operator/=(const Vector& v) noexcept
+	{
+		std::transform(begin(), end(), v.begin(), begin(), std::divides<Real>());
+		return *this;
+	}
+
+	constexpr Vector& operator*=(const Real& s) noexcept
+	{
+		for (auto& coordinate : tuple) { coordinate *= s; }
+		return *this;
+	}
+
+	constexpr Vector& operator/=(const Real& s) noexcept
+	{
+		for (auto& coordinate : tuple) { coordinate /= s; }
+		return *this;
+	}
+
 private:
 	std::array<Real, Dimension> tuple{};
 };
@@ -122,6 +158,26 @@ template <typename Real, std::size_t Dimension>
 inline constexpr bool operator==(const Vector<Real, Dimension>& a, const Vector<Real, Dimension>& b)
 {
 	return std::equal(a.begin(), a.end(), b.begin());
+}
+
+template <typename Real, std::size_t Dimension>
+inline constexpr bool operator<(const Vector<Real, Dimension>& a, const Vector<Real, Dimension>& b)
+{
+	return std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end());
+}
+
+template <typename Real, std::size_t Dimension>
+inline Vector<Real, Dimension> operator+(const Vector<Real, Dimension>& v)
+{
+	return v;
+}
+
+template <typename Real, std::size_t Dimension>
+inline constexpr Vector<Real, Dimension> operator-(const Vector<Real, Dimension>& v)
+{
+	Vector<Real, Dimension> result;
+	std::transform(v.begin(), v.end(), result.begin(), std::negate<Real>());
+	return result;
 }
 
 template <typename Real, std::size_t Dimension>
