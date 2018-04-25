@@ -1,3 +1,3 @@
-add_executable(UnitTests UnitTests.cpp VectorTest.cpp)
+add_executable(LinearAlgebraUnitTests LinearAlgebraUnitTests.cpp VectorTest.cpp)
 
-add_test(UnitTests UnitTests)
+add_test(LinearAlgebraUnitTests LinearAlgebraUnitTests)

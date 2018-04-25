@@ -1,0 +1,3 @@
+add_executable(OperatorsUnitTests OperatorsUnitTests.cpp OperatorsTest.cpp)
+
+add_test(OperatorsUnitTests OperatorsUnitTests)
