@@ -1,9 +1,8 @@
 project(Roos.Math.Operators)
 
-set(EXECUTABLE_OUTPUT_PATH Build)
+add_library(Roos.Math.Operators INTERFACE)
 
-include_directories(Include)
+target_include_directories(Roos.Math.Operators INTERFACE Include)
 
 enable_testing()
 add_subdirectory(Test)
-add_subdirectory(Example)

@@ -1,3 +1,5 @@
 add_executable(OperatorsUnitTests OperatorsUnitTests.cpp OperatorsTest.cpp)
 
+target_link_libraries(OperatorsUnitTests Roos.Math.Operators)
+
 add_test(OperatorsUnitTests OperatorsUnitTests)

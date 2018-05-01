@@ -1,9 +1,11 @@
 project(Roos.Math.LinearAlgebra)
 
-set(EXECUTABLE_OUTPUT_PATH Build)
+add_library(Roos.Math.LinearAlgebra INTERFACE)
 
-include_directories(Include)
+target_include_directories(Roos.Math.LinearAlgebra INTERFACE Include)
+
+target_link_libraries(Roos.Math.LinearAlgebra INTERFACE Roos.Math.Operators)
 
 enable_testing()
 add_subdirectory(Test)
-add_subdirectory(Example)
+
