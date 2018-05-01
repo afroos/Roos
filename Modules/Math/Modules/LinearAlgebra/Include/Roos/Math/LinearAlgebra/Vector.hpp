@@ -7,13 +7,18 @@
 #include <functional>
 #include <iostream>
 #include <iterator>
-
-//#include <Roos/Math/Operators.hpp>
+#include <Roos/Math/Operators.hpp>
 
 namespace Roos::Math {
 
 template <typename Real, std::size_t Dimension>
-class Vector
+class Vector :
+	Operators::EqualityComparable<Vector<Real, Dimension>>,
+	Operators::LessThanComparable<Vector<Real, Dimension>>,
+	Operators::Addable<Vector<Real, Dimension>>,
+	Operators::Subtractable<Vector<Real, Dimension>>,
+	Operators::CommutativeMultipliable<Vector<Real, Dimension>, Real>,
+	Operators::Dividable<Vector<Real, Dimension>, Real>
 {
 public:
 
@@ -211,7 +216,5 @@ using Vector4f = Vector<float, 4>;
 using Vector4d = Vector<double, 4>;
 
 }
-
-
 
 #endif

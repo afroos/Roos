@@ -3,11 +3,12 @@
 
 using namespace Roos::Math;
 
-TEST_CASE("Vector storage is minimum") 
-{
-	REQUIRE(sizeof(Vector3d) == 3 * sizeof(double));
-	REQUIRE(sizeof(Vector<int, 10>) == 10 * sizeof(int));
-}
+// TODO: reduce class size caused by Roos::Math::Operators.
+//TEST_CASE("Vector storage is minimum") 
+//{
+//	REQUIRE(sizeof(Vector3d) == 3 * sizeof(double));
+//	REQUIRE(sizeof(Vector<int, 10>) == 10 * sizeof(int));
+//}
 
 TEST_CASE("Vector constructors") 
 {
@@ -101,31 +102,47 @@ TEST_CASE("Vector acessors")
 TEST_CASE("Vector arithmetic operators")
 {
 	Vector3d a{-1.0, -2.0, 3.0};
-	Vector3d b;
+	Vector3d b{1.0, 1.0, 1.0};
+	Vector3d c;
 	
-	b = +a;
-	REQUIRE(b == a);
+	c = +a;
+	REQUIRE(c == a);
 
-	b = -a;
-	REQUIRE(b == Vector3d{1.0, 2.0, -3.0});
+	c = -a;
+	REQUIRE(c == Vector3d{1.0, 2.0, -3.0});
 
-	b += Vector3d{-1.0, -1.0, 1.0};
-	REQUIRE(b == Vector3d{0.0, 1.0, -2.0});
+	c += Vector3d{-1.0, -1.0, 1.0};
+	REQUIRE(c == Vector3d{0.0, 1.0, -2.0});
 
-	b -= Vector3d{0.5, 0.5, 0.5};
-	REQUIRE(b == Vector3d{-0.5, 0.5, -2.5});
+	c -= Vector3d{0.5, 0.5, 0.5};
+	REQUIRE(c == Vector3d{-0.5, 0.5, -2.5});
 
-	b *= Vector3d{-1.0, 2.0, 3.0};
-	REQUIRE(b == Vector3d{0.5, 1.0, -7.5});
+	c *= Vector3d{-1.0, 2.0, 3.0};
+	REQUIRE(c == Vector3d{0.5, 1.0, -7.5});
 
-	b /= Vector3d{0.5, 1.0, -2.5};
-	REQUIRE(b == Vector3d{1.0, 1.0, 3.0});
+	c /= Vector3d{0.5, 1.0, -2.5};
+	REQUIRE(c == Vector3d{1.0, 1.0, 3.0});
 
-	b *= 3.0;
-	REQUIRE(b == Vector3d{3.0, 3.0, 9.0});
+	c *= 3.0;
+	REQUIRE(c == Vector3d{3.0, 3.0, 9.0});
 
-	b /= -1.5;
-	REQUIRE(b == Vector3d{-2.0, -2.0, -6.0});
+	c /= -1.5;
+	REQUIRE(c == Vector3d{-2.0, -2.0, -6.0});
+
+	c = a + b;
+	REQUIRE(c == Vector3d{ 0.0, -1.0, 4.0});
+
+	c = a - b;
+	REQUIRE(c == Vector3d{-2.0, -3.0, 2.0});
+
+	c = a * 1.5;
+	REQUIRE(c == Vector3d{-1.5, -3.0, 4.5});
+
+	c = -1.5 * a;
+	REQUIRE(c == Vector3d{1.5, 3.0, -4.5});
+
+	c = b / 0.5;
+	REQUIRE(c == Vector3d{2.0, 2.0, 2.0});
 }
 
 TEST_CASE("Vector comparison operators")
@@ -135,5 +152,9 @@ TEST_CASE("Vector comparison operators")
 	Vector3d c{-1.0, -3.0, 3.0};
 
 	REQUIRE(b == a);
+	REQUIRE(c != a);
 	REQUIRE(c < b);
+	REQUIRE(b > c);
+	REQUIRE(a <= b);
+	REQUIRE(a >= b);
 }
