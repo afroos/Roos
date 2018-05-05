@@ -1,2 +1,2 @@
-add_subdirectory(LinearAlgebra)
 add_subdirectory(Operators)
+add_subdirectory(Vector)

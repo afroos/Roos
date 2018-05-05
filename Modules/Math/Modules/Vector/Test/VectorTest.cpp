@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include <Roos/Math/LinearAlgebra/Vector.hpp>
+#include <Roos/Math/Vector/Vector.hpp>
 
 using namespace Roos::Math;
 

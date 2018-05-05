@@ -1,5 +1,0 @@
-add_executable(LinearAlgebraUnitTests LinearAlgebraUnitTests.cpp VectorTest.cpp)
-
-target_link_libraries(LinearAlgebraUnitTests Roos.Math.LinearAlgebra)
-
-add_test(LinearAlgebraUnitTests LinearAlgebraUnitTests)

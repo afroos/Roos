@@ -1,5 +1,5 @@
-#ifndef ROOS_MATH_LINEAR_ALGEBRA_VECTOR_HPP
-#define ROOS_MATH_LINEAR_ALGEBRA_VECTOR_HPP
+#ifndef ROOS_MATH_VECTOR_VECTOR_HPP
+#define ROOS_MATH_VECTOR_VECTOR_HPP
 
 #include <algorithm>
 #include <array>
@@ -7,6 +7,7 @@
 #include <functional>
 #include <iostream>
 #include <iterator>
+#include <numeric>
 #include <Roos/Math/Operators.hpp>
 
 namespace Roos::Math {
@@ -174,7 +175,7 @@ inline constexpr bool operator<(const Vector<Real, Dimension>& a, const Vector<R
 }
 
 template <typename Real, std::size_t Dimension>
-inline Vector<Real, Dimension> operator+(const Vector<Real, Dimension>& v)
+inline constexpr Vector<Real, Dimension> operator+(const Vector<Real, Dimension>& v)
 {
 	return v;
 }
