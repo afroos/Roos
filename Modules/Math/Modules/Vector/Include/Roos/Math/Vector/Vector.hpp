@@ -197,6 +197,12 @@ std::ostream& operator<<(std::ostream& os, const Vector<Real, Dimension>& v)
 	return os;
 }
 
+template <typename Real, std::size_t Dimension>
+inline constexpr Real dot(const Vector<Real, Dimension>& a, const Vector<Real, Dimension>& b)
+{
+	return static_cast<Real>(std::inner_product(a.begin(), a.end(), b.begin(), 0.0));
+}
+
 template <typename Real>
 using Vector2 = Vector<Real, 2>;
 template <typename Real>

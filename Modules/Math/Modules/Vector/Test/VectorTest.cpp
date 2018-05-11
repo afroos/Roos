@@ -158,3 +158,20 @@ TEST_CASE("Vector comparison operators")
 	REQUIRE(a <= b);
 	REQUIRE(a >= b);
 }
+
+TEST_CASE("Vector dot product")
+{
+	Vector3i a{1, 0, 0};
+	Vector3i b{0, 1, 0};
+	Vector3i c{-1, 0, 0};
+	Vector3i d{0, -1, 0};
+	Vector3i e{1, 2, 3};
+	Vector3i f{4, 5, 6};
+
+	REQUIRE(dot(a, a) == 1);
+	REQUIRE(dot(a, b) == 0);
+	REQUIRE(dot(a, c) == -1);
+	REQUIRE(dot(a, d) == 0);
+	REQUIRE(dot(e, f) == 32);
+}
+
