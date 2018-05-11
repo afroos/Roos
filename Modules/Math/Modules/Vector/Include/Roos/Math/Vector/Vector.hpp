@@ -203,6 +203,18 @@ inline constexpr Real dot(const Vector<Real, Dimension>& a, const Vector<Real, D
 	return static_cast<Real>(std::inner_product(a.begin(), a.end(), b.begin(), 0.0));
 }
 
+template <typename Real, std::size_t Dimension>
+inline constexpr Real normSquared(const Vector<Real, Dimension>& v)
+{
+	return dot(v, v);
+}
+
+template <typename Real, std::size_t Dimension>
+inline constexpr Real norm(const Vector<Real, Dimension>& v)
+{
+	return std::sqrt(normSquared(v));
+}
+
 template <typename Real>
 using Vector2 = Vector<Real, 2>;
 template <typename Real>

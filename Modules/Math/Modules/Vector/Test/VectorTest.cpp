@@ -175,3 +175,23 @@ TEST_CASE("Vector dot product")
 	REQUIRE(dot(e, f) == 32);
 }
 
+TEST_CASE("Vector norm")
+{
+	Vector2d a{0.0, 0.0};
+	Vector2d b{1.0, 0.0};
+	Vector2d c{0.0, 1.0};
+	Vector2d d{3.0, 4.0};
+	Vector2d e{-3.0, -4.0};
+
+	REQUIRE(norm(a) == Approx(0.0));
+	REQUIRE(norm(b) == Approx(1.0));
+	REQUIRE(norm(b) == norm(c));
+	REQUIRE(norm(d) == Approx(5.0));
+	REQUIRE(norm(d) == norm(e));
+
+	REQUIRE(normSquared(a) == Approx(0.0));
+	REQUIRE(normSquared(b) == Approx(1.0));
+	REQUIRE(normSquared(b) == normSquared(c));
+	REQUIRE(normSquared(d) == Approx(25.0));
+	REQUIRE(normSquared(d) == normSquared(e));
+}
